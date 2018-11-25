@@ -3,6 +3,7 @@ package com.curious.loadstatemanager;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import com.curious.loadstatemanager.state.BaseState;
 import com.curious.loadstatemanager.state.SuccessState;
 
 import java.lang.reflect.Constructor;
@@ -25,7 +26,7 @@ public class LoadLayout extends FrameLayout {
         addSateView(successState);
     }
 
-    private void addSateView(BaseState state) {
+    public void addSateView(BaseState state) {
         state.setStateView(null, getContext());
         cacheStateMap.put(state.getClass(), state);
     }

@@ -3,7 +3,6 @@ package com.curious.loadstatemanager.state;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import com.curious.loadstatemanager.BaseState;
 
 public class SuccessState extends BaseState {
 

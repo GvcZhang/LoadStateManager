@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import com.curious.loadstatemanager.BaseState;
+
 import com.curious.loadstatemanager.R;
 
 public class ErrorState extends BaseState {
@@ -23,19 +23,33 @@ public class ErrorState extends BaseState {
     //api server error
     public static final int STATE_SERVER = 4;
 
+    public ErrorState(View rootView, Context context) {
+        super(rootView, context);
+    }
+
+    public ErrorState(View rootView, Context context, OnStateEventListener listener) {
+        super(rootView, context, listener);
+    }
+
     @Override
     protected int onCreateView() {
         return R.layout.loadstate_error;
     }
 
     @Override
-    protected void onViewCreated(Context context, View view,Bundle bundle) {
+    protected void onViewCreated(Context context, View view, Bundle bundle) {
         mStateInfoTV = view.findViewById(R.id.state_info_tv);
+        view.findViewById(R.id.reload_btn).setOnClickListener(v -> {
+            OnStateEventListener listener = getStateEventListener();
+            if (listener != null) {
+                listener.onTrigger(ErrorState.this, null);
+            }
+        });
         onBundleChanged(bundle);
     }
 
     @Override
-    protected void onBundleChanged(Bundle bundle) {
+    public void onBundleChanged(Bundle bundle) {
         if (bundle != null) {
             int state = bundle.getInt(KEY, STATE_UNKNOWN);
             switch (state) {

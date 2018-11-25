@@ -3,7 +3,12 @@ package com.curious.loadstatemanager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+
+import com.curious.loadstatemanager.state.BaseState;
 import com.curious.loadstatemanager.state.SuccessState;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoadStateManager {
 
@@ -13,7 +18,7 @@ public class LoadStateManager {
     private LoadLayout mLoadLayout;
 
 
-    public LoadStateManager(View rootView, Context context) {
+    private LoadStateManager(View rootView, Context context) {
         this.mContext = context;
         this.mRootView = rootView;
         mLoadLayout = new LoadLayout(mContext);
@@ -21,7 +26,7 @@ public class LoadStateManager {
     }
 
 
-    public View getLoadLayout() {
+    public LoadLayout getLoadLayout() {
 
         return mLoadLayout;
     }
@@ -32,6 +37,38 @@ public class LoadStateManager {
 
     public void showStateView(Class<? extends BaseState> clazz, Bundle bundle) {
         mLoadLayout.showStateView(clazz, bundle);
+    }
+
+    public static class Builder {
+
+        private List<BaseState> stateList = new ArrayList<>();
+        private View mRootView;
+        private Context mContext;
+
+        public Builder addSupportState(BaseState state) {
+            stateList.add(state);
+            return this;
+        }
+
+        public Builder setRootView(View view) {
+            this.mRootView = view;
+            return this;
+        }
+
+        public Builder setContext(Context context) {
+            this.mContext = context;
+            return this;
+        }
+
+        public LoadStateManager build() {
+            LoadStateManager manager = new LoadStateManager(this.mRootView, this.mContext);
+            if (!stateList.isEmpty()) {
+                for (BaseState state : stateList) {
+                    manager.getLoadLayout().addSateView(state);
+                }
+            }
+            return manager;
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-package com.curious.loadstatemanager;
+package com.curious.loadstatemanager.state;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,18 +9,32 @@ public abstract class BaseState {
     private View rootView;
     private Context context;
     private Bundle bundle;
+    private OnStateEventListener stateEventListener;
 
     public BaseState() {
     }
 
     public BaseState(View rootView, Context context) {
+        this(rootView, context, null);
+    }
+
+    public BaseState(View rootView, Context context, OnStateEventListener listener) {
         this.rootView = rootView;
         this.context = context;
+        this.stateEventListener = listener;
     }
 
     public void setStateView(View view, Context context) {
         this.rootView = view;
         this.context = context;
+    }
+
+    public void setStateEventListener(OnStateEventListener listener) {
+        this.stateEventListener = listener;
+    }
+
+    public OnStateEventListener getStateEventListener() {
+        return this.stateEventListener;
     }
 
     public void setBundle(Bundle bundle) {
@@ -32,7 +46,7 @@ public abstract class BaseState {
      *
      * @param bundle
      */
-    protected void onBundleChanged(Bundle bundle) {
+    public void onBundleChanged(Bundle bundle) {
     }
 
     protected abstract int onCreateView();
@@ -50,5 +64,6 @@ public abstract class BaseState {
         onViewCreated(context, rootView, bundle);
         return rootView;
     }
+
 
 }
