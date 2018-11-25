@@ -8,11 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import com.curious.loadstate.LoadStateManager;
+import com.curious.loadstate.state.BaseState;
+import com.curious.loadstate.state.ErrorState;
+import com.curious.loadstate.state.LoadingState;
+import com.curious.loadstate.state.OnStateEventListener;
 
-import com.curious.loadstatemanager.state.BaseState;
-import com.curious.loadstatemanager.state.ErrorState;
-import com.curious.loadstatemanager.state.LoadingState;
-import com.curious.loadstatemanager.state.OnStateEventListener;
 
 public class Test1Fragment extends BaseFragment {
 

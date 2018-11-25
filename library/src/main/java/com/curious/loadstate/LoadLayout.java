@@ -1,10 +1,10 @@
-package com.curious.loadstatemanager;
+package com.curious.loadstate;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.FrameLayout;
-import com.curious.loadstatemanager.state.BaseState;
-import com.curious.loadstatemanager.state.SuccessState;
+import com.curious.loadstate.state.BaseState;
+import com.curious.loadstate.state.SuccessState;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

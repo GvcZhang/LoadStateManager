@@ -1,11 +1,10 @@
-package com.curious.loadstatemanager.state;
+package com.curious.loadstate.state;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import com.curious.loadstatemanager.R;
+import com.curious.loadstate.R;
 
 public class ErrorState extends BaseState {
 
@@ -42,7 +41,7 @@ public class ErrorState extends BaseState {
         view.findViewById(R.id.reload_btn).setOnClickListener(v -> {
             OnStateEventListener listener = getStateEventListener();
             if (listener != null) {
-                listener.onTrigger(ErrorState.this, null);
+                listener.onTrigger(ErrorState.this);
             }
         });
         onBundleChanged(bundle);

@@ -1,4 +1,4 @@
-package com.curious.loadstatemanager.state;
+package com.curious.loadstate.state;
 
 import android.content.Context;
 import android.os.Bundle;
