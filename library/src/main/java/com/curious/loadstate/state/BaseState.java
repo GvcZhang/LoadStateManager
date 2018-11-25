@@ -58,7 +58,7 @@ public abstract class BaseState {
             return rootView;
         }
         if (onCreateView() <= 0) {
-            throw new IllegalArgumentException("onCreateView resource id is empty");
+            throw new IllegalArgumentException("onCreateView resource id is empty-" + this.getClass().getSimpleName());
         }
         rootView = View.inflate(context, onCreateView(), null);
         onViewCreated(context, rootView, bundle);

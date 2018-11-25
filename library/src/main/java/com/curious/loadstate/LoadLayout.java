@@ -3,6 +3,7 @@ package com.curious.loadstate;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+
 import com.curious.loadstate.state.BaseState;
 import com.curious.loadstate.state.SuccessState;
 
@@ -27,7 +28,6 @@ public class LoadLayout extends FrameLayout {
     }
 
     public void addSateView(BaseState state) {
-        state.setStateView(null, getContext());
         cacheStateMap.put(state.getClass(), state);
     }
 
@@ -41,6 +41,8 @@ public class LoadLayout extends FrameLayout {
             try {
                 Constructor constructor = clazz.getConstructor();
                 state = (BaseState) constructor.newInstance();
+                //the new state context is null, so set a context
+                state.setStateView(null, getContext());
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
                 throw new IllegalArgumentException("Not support State: " + clazz + "--" + e.getMessage());
             }
@@ -48,6 +50,7 @@ public class LoadLayout extends FrameLayout {
         } else {
             state = cacheStateMap.get(clazz);
         }
+        mCurState = state;
         addView(state.getRootView());
         if (bundle != null) {
             state.onBundleChanged(bundle);
