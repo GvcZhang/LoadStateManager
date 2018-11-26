@@ -2,6 +2,7 @@ package com.curious.loadstate;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import com.curious.loadstate.state.BaseState;
 import com.curious.loadstate.state.SuccessState;
@@ -49,13 +50,15 @@ public class LoadStateManager {
             return this;
         }
 
-        public Builder setRootView(View view) {
+        public Builder setRootView(View view, Context context) {
             this.mRootView = view;
+            this.mContext = context;
             return this;
         }
 
-        public Builder setContext(Context context) {
+        public Builder setContentView(int layoutId, Context context) {
             this.mContext = context;
+            this.mRootView = LayoutInflater.from(context).inflate(layoutId, null);
             return this;
         }
 

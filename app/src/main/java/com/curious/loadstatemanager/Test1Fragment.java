@@ -35,8 +35,7 @@ public class Test1Fragment extends BaseFragment {
             }
         });
         loadStateManager = new LoadStateManager.Builder()
-                .setContext(getContext())
-                .setRootView(rootView)
+                .setRootView(rootView,getContext())
                 .addSupportState(new ErrorState(null, getContext(), new OnStateEventListener() {
                     @Override
                     public void onTrigger(BaseState state, Object... args) {
