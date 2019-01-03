@@ -43,7 +43,13 @@ public class LoadLayout extends FrameLayout {
                 state = (BaseState) constructor.newInstance();
                 //the new state context is null, so set a context
                 state.setStateView(null, getContext());
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+            } catch (NoSuchMethodException e) {
+                throw new IllegalArgumentException("Not support State: " + clazz + "--" + e.getMessage());
+            } catch (IllegalAccessException e) {
+                throw new IllegalArgumentException("Not support State: " + clazz + "--" + e.getMessage());
+            } catch (InvocationTargetException e) {
+                throw new IllegalArgumentException("Not support State: " + clazz + "--" + e.getMessage());
+            } catch (InstantiationException e) {
                 throw new IllegalArgumentException("Not support State: " + clazz + "--" + e.getMessage());
             }
             addSateView(state);
