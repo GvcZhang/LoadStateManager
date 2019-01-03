@@ -4,7 +4,7 @@ A library to load fragment page with different state
 ## Usage
 ```
 Gradle:
-compile 'com.curious.loadstate:loadstate:1.0.0'
+implementation 'com.curious.loadstate:loadstate:1.0.1'
 ```
 
 ```
@@ -12,7 +12,7 @@ Maven:
 <dependency>
   <groupId>com.curious.loadstate</groupId>
   <artifactId>loadstate</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
